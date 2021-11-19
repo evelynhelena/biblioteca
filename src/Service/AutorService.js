@@ -4,7 +4,7 @@ async function insertAutor(nome,nascimento,nacionalidade){
     const conn = await database.connect();
     const sql = `call pc_insertAutor(?,?,?)`;
     const newAutor = [nome,nascimento,nacionalidade];
-    conn.query(sql,newAutor);
+    await conn.query(sql,newAutor);
     conn.end();
 }
 
@@ -24,6 +24,11 @@ async function updateAutor(nome,nascimento,nacionalidade,id){
     conn.end();
 }
 
+async function deleteAutor(id){
+    const conn = await database.connect();
+    const sql = "update tbl_autor set autor_deletado = 1 where codigo_autor = ?";
+    await conn.query(sql,id);
+    conn.end();
+}
 
-
-export default {insertAutor,findAll,updateAutor};
+export default {insertAutor,findAll,updateAutor,deleteAutor};

@@ -32,4 +32,15 @@ router.put("/:id", async (req,res) => {
     }
 });
 
+router.delete("/:id", async (req, res) =>{
+    const id = req.params.id;
+    try{
+        await db.deleteAutor(id);
+        res.status(200).send({mensage: "Autor Deletado com sucesso"});
+    }catch(err){
+        res.status(500).send({mensage:"Erro ao deletar o autor",err:err});
+    }
+})
+
+
 export default router;

@@ -3,10 +3,12 @@ const router = express.Router();
 import client from "./Controller/ClienteController.js";
 import editora from "./Controller/EditoraController.js";
 import autor from "./Controller/AutorController.js";
+import categoria from "./Controller/CategoriaController.js";
 
 router.use("/client",client);
 router.use("/editora",editora);
 router.use("/autor",autor);
+router.use("/categoria",categoria);
 
 
 router.use('/',(req, res) => {
