@@ -19,7 +19,7 @@ router.get("/", async (req,res) => {
   }catch(err){
     res.status(500).send({mensage: "Erro ao resgatar as categorias",err:err});
   }
-})
+});
 
 router.put("/:id", async (req,res) => {
   const {nome} = req.body;
@@ -30,7 +30,7 @@ router.put("/:id", async (req,res) => {
   }catch(err){
     res.status(500).send({mensage: "Erro ao alterrar a categoria",err:err});
   }
-})
+});
 
 
 router.delete("/:id", async (req,res) => {
@@ -41,6 +41,6 @@ router.delete("/:id", async (req,res) => {
   }catch(err){
     res.status(500).send({mensage: "Erro ao deletar a categoria",err:err});
   }
-})
+});
 
 export default router;

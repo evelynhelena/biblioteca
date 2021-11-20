@@ -63,3 +63,53 @@ DELIMITER $$
     update tbl_autor set nome_autor = nome_autor, nasc_autor = nasc_autor, nacionalidade = nacionalidade where codigo_autor = codigo;
     END $$
 DELIMITER ;
+
+/*insert livro*/
+DELIMITER $$
+	create procedure pc_insertLivro(
+	nome_livro VARCHAR(45),
+	data_publicacao DATE,
+	paginas int, 
+	valor_unitario DECIMAL (6, 2),
+	fk_categoria int,
+	fk_editora int
+	)
+    begin
+    insert into tbl_livros (nome_livro, data_publicacao, paginas,valor_unitario,fk_categoria,fk_editora)
+    values (nome_livro, data_publicacao, paginas,valor_unitario,fk_categoria,fk_editora);
+    END $$
+DELIMITER ;
+
+/*update livro*/
+DELIMITER $$
+	create procedure pc_UpdateLivro(
+	nome_livro VARCHAR(45),
+	data_publicacao DATE,
+	paginas int, 
+	valor_unitario DECIMAL (6, 2),
+	fk_categoria int,
+	fk_editora int,
+	codigo int
+	)
+    begin
+    update tbl_livros set nome_livro = nome_livro, data_publicacao = data_publicacao, paginas = paginas,
+    valor_unitario = valor_unitario, fk_categoria = fk_categoria, fk_editora = fk_editora where codigo_livro = codigo;
+    END $$
+DELIMITER ;
+
+
+/*insert user*/
+DELIMITER $$
+	create procedure pc_insertUser(userName VARCHAR(45),email VARCHAR(100),password varchar(64))
+    begin
+    insert into tbl_user (userName,email,password) value (userName,email,SHA2(password,256));
+    END $$
+DELIMITER ;
+
+/*update user*/
+DELIMITER $$
+	create procedure pc_updateUser(userName VARCHAR(45),email VARCHAR(100),password varchar(64),codigo int)
+    begin
+    update tbl_user set userName  = userName, email = email, password = SHA2(password,256) where codigo_user = codigo ;
+    END $$
+DELIMITER ;

@@ -40,7 +40,7 @@ router.delete("/:id", async (req, res) =>{
     }catch(err){
         res.status(500).send({mensage:"Erro ao deletar o autor",err:err});
     }
-})
+});
 
 
 export default router;

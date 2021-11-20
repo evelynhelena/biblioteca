@@ -70,6 +70,14 @@ foreign key( fk_livro) references tbl_livros(codigo_livro),
 foreign key( fk_emprestimo) references tbl_emprestimo(codigo_emprestimo)
 );
 
+create table tbl_log(
+	codigo_log int auto_increment primary key not null,
+	date_change dateTime default now(),
+	preco_antigo DECIMAL,
+	preco_atual DECIMAL,
+	fk_codigo_livro int,
+	foreign key (fk_codigo_livro )  references tbl_livros (codigo_livro)
+);
 
 
 

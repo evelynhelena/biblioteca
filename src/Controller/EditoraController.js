@@ -10,7 +10,7 @@ router.post("/", async (req,res) => {
     }catch(err){
         res.status(500).send({mensage: "Erro ao cadastrar a editora"})
     }
-})
+});
 
 router.get("/", async (req,res) => {
     try{
@@ -19,7 +19,7 @@ router.get("/", async (req,res) => {
     }catch(err){
         res.status(500).send({mensage: "Erro ao resgatar as editoras"});
     }
-})
+});
 
 router.put("/:id", async (req,res) => {
     const {nome,cnpj,email} = req.body;
@@ -30,7 +30,7 @@ router.put("/:id", async (req,res) => {
     }catch(err){
         res.status(500).send({mensage: "Erro ao alterar a editora"})
     }
-})
+});
 
 router.delete("/:id", async (req,res) => {
     const id = req.params.id;
@@ -40,6 +40,6 @@ router.delete("/:id", async (req,res) => {
     }catch(err){
         res.status(500).send({mensage: "Erro ao deletar a editora"})
     }
-})
+});
 
 export default router;
