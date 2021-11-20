@@ -1,9 +1,9 @@
 import database from "../Config/ConfigDB.js";
 
-async function inserUser(nome,email,password){
+async function inserUser(userName,name,email,password){
     const conn = await database.connect();
-    const sql = "call pc_insertUser(?,?,?)";
-    const newUser = [nome,email,password];
+    const sql = "call pc_insertUser(?,?,?,?)";
+    const newUser = [userName,name,email,password];
     await conn.query(sql, newUser);
     conn.end();
 }
@@ -16,10 +16,10 @@ async function findAll(){
     return rows;
 }
 
-async function updateUser(nome,email,password,codigo){
+async function updateUser(userName,name,email,password,codigo){
     const conn = await database.connect();
-    const sql = "call pc_updateUser(?,?,?,?)";
-    const data = [nome,email,password,codigo];
+    const sql = "call pc_updateUser(?,?,?,?,?)";
+    const data = [userName,name,email,password,codigo];
     await conn.query(sql,data);
     conn.end();
 }

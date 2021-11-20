@@ -79,5 +79,13 @@ create table tbl_log(
 	foreign key (fk_codigo_livro )  references tbl_livros (codigo_livro)
 );
 
+create table tbl_user(
+	codigo_user int auto_increment primary key not null,
+	name varchar(45),
+	userName varchar(45),
+	email varchar(100),
+	password varchar(64),
+	user_deletado bool default false
+);
 
 

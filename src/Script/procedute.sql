@@ -100,9 +100,9 @@ DELIMITER ;
 
 /*insert user*/
 DELIMITER $$
-	create procedure pc_insertUser(userName VARCHAR(45),email VARCHAR(100),password varchar(64))
+	create procedure pc_insertUser(userName VARCHAR(45),name varchar(45),email VARCHAR(100),password varchar(64))
     begin
-    insert into tbl_user (userName,email,password) value (userName,email,SHA2(password,256));
+    insert into tbl_user (userName,name,email,password) value (userName,name,email,SHA2(password,256));
     END $$
 DELIMITER ;
 
@@ -111,5 +111,15 @@ DELIMITER $$
 	create procedure pc_updateUser(userName VARCHAR(45),email VARCHAR(100),password varchar(64),codigo int)
     begin
     update tbl_user set userName  = userName, email = email, password = SHA2(password,256) where codigo_user = codigo ;
+    END $$
+DELIMITER ;
+
+/*selet usuario autenticado*/
+DELIMITER $$
+	create procedure pc_selectUser(userName VARCHAR(45),password varchar(64))
+    begin
+    select tu.codigo_user, tu.email , tu.user_deletado, tu.name, tu.userName 
+    from  tbl_user tu 
+    where tu.userName = userName and tu.password = SHA2(password,256);
     END $$
 DELIMITER ;
