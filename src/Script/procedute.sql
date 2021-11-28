@@ -123,3 +123,19 @@ DELIMITER $$
     where tu.userName = userName and tu.password = SHA2(password,256);
     END $$
 DELIMITER ;
+
+/*insert autor_livro*/
+DELIMITER $$
+	create procedure pc_insertAutorLivro(fk_autor int ,fk_livro int)
+    begin
+    insert into autor_livro (fk_autor,fk_livro) values (fk_autor,fk_livro);
+    END $$
+DELIMITER ;
+
+/*update autor_livro*/
+DELIMITER $$
+	create procedure pc_updateAutorLivro(fk_autor int ,fk_livro int,codigo int)
+    begin
+   	update autor_livro set fk_autor = fk_autor, fk_livro = fk_livro where codigo_autor_livro = codigo;
+    END $$
+DELIMITER ;
