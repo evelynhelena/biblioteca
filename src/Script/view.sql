@@ -2,7 +2,8 @@
 create view  vw_livro_editora_categoria as
 select * from tbl_livros tl join 
 tbl_categoria tc on tl.fk_categoria = tc.codigo_categoria 
-join tbl_editora te on tl.fk_editora = te.codigo_editora 
+join tbl_editora te on tl.fk_editora = te.codigo_editora
+left join autor_livro al ON tl.codigo_livro = al.fk_livro
 where tl.livro_deletado = 0;
 
 /*view user*/

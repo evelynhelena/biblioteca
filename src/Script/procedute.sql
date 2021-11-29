@@ -139,3 +139,20 @@ DELIMITER $$
    	update autor_livro set fk_autor = fk_autor, fk_livro = fk_livro where codigo_autor_livro = codigo;
     END $$
 DELIMITER ;
+
+/*insert tbl_emprstimo*/
+DELIMITER $$
+	create procedure pc_insertEmprestimo(retirada datetime ,devolucao TIMESTAMP,fk_cliente int)
+    begin
+   	insert into tbl_emprestimo (retirada,devolucao,fk_cliente) values(retirada,devolucao,fk_cliente);
+    END $$
+DELIMITER ;
+
+/*update tbl_emprstimo*/
+DELIMITER $$
+	create procedure pc_updateEmprestimo(retirada datetime ,devolucao TIMESTAMP,fk_cliente int,codigo int)
+    begin
+	    update tbl_emprestimo set retirada = retirada, devolucao = devolucao, fk_cliente = fk_cliente 
+	    where codigo_emprestimo = codigo;
+    END $$
+DELIMITER ;

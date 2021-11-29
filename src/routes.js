@@ -7,6 +7,7 @@ import categoria from "./Controller/CategoriaController.js";
 import livro from "./Controller/LivroController.js";
 import user from "./Controller/UserController.js";
 import login from "./Controller/LoginController.js";
+import autorLivro from "./Controller/AutorLivroController.js";
 
 router.use("/client",client);
 router.use("/editora",editora);
@@ -15,6 +16,7 @@ router.use("/categoria",categoria);
 router.use("/livro",livro);
 router.use("/user",user);
 router.use("/login",login);
+router.use("/autorLivro",autorLivro);
 
 router.use('/',(req, res) => {
     res.status(200).send({message: "Achou"});
