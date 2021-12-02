@@ -1,0 +1,4 @@
+ - Adicionar a quantidade de livros na tabela de livros
+ - Adicioncar o id na tabela livro emprestimo
+ - Quando um livro for alugado retirar da quantidade
+ - Qaundo um livro for devolvido inserir na quantidade

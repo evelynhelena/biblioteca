@@ -10,6 +10,14 @@ async function insertEprestimo(retirada,devolucao,codigoCliente){
     return codigo_emprestimo;
 }
 
+async function findAll(){
+    const conn = await database.connect();
+    const sql = "select * from vw_livro_emprestimo";
+    const [rows] = await conn.query(sql);
+    conn.end();
+    return rows;
+}
+
 async function updateEprestimo(retirada,devolucao,codigoCliente,codEmprestimo){
     const conn = await database.connect();
     const sql = "call pc_updateEmprestimo(?,?,?,?)"
@@ -18,4 +26,11 @@ async function updateEprestimo(retirada,devolucao,codigoCliente,codEmprestimo){
     conn.end();
 } 
 
-export default {insertEprestimo,updateEprestimo}
+
+async function deleteEmprestimo(id){
+    const conn = await database.connect();
+    const sql = "update tbl_emprestimo set emprestimo_deletado = 1 where codigo_emprestimo = ?"
+    await conn.query(sql,id);
+    conn.end();
+}
+export default {insertEprestimo,updateEprestimo,findAll,deleteEmprestimo}

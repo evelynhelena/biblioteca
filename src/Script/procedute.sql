@@ -145,6 +145,8 @@ DELIMITER $$
 	create procedure pc_insertEmprestimo(retirada datetime ,devolucao TIMESTAMP,fk_cliente int)
     begin
    	insert into tbl_emprestimo (retirada,devolucao,fk_cliente) values(retirada,devolucao,fk_cliente);
+
+   	select * from tbl_emprestimo te where te.codigo_emprestimo = (select max(te2.codigo_emprestimo) from tbl_emprestimo te2);
     END $$
 DELIMITER ;
 

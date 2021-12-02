@@ -88,4 +88,7 @@ create table tbl_user(
 	user_deletado bool default false
 );
 
+/*Alter Tables*/
+alter table tbl_emprestimo add column emprestimo_deletado bool default false;
+
 
