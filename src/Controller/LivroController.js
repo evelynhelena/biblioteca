@@ -1,9 +1,22 @@
 import express from 'express';
 const router = express.Router();
 import db from "../Service/LivroService.js";
+import {body, validationResult} from "express-validator";
 
-router.post("/", async (req,res) =>{
+router.post("/",[
+    body('nome').isString().withMessage("Nome inválido"),
+    body('nome').isLength({min: 1}).withMessage("Nome inválido"),
+    body('dataPublicacao').isDate().withMessage("Data de publicação inválida"),
+    body('paginas').isNumeric().withMessage("Números de páginas inválida"),
+    body('valor').isNumeric().withMessage("Valor inválido"),
+    body('codCategoria').isNumeric().withMessage("Código da categoria inválido"),
+    body('codEditora').isNumeric().withMessage("Código da editora inválido"),
+], async (req,res) =>{
     const {nome,dataPublicacao,paginas,valor,codCategoria,codEditora} = req.body;
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).send({errors: errors.array()});
+    }
     try{
         await db.insertLivro(nome,dataPublicacao,paginas,valor,codCategoria,codEditora);
         res.status(200).send({mensage:"Livro inserido com sucesso"});
@@ -21,9 +34,21 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id",[
+    body('nome').isString().withMessage("Nome inválido"),
+    body('nome').isLength({min: 1}).withMessage("Nome inválido"),
+    body('dataPublicacao').isDate().withMessage("Data de publicação inválida"),
+    body('paginas').isNumeric().withMessage("Números de páginas inválida"),
+    body('valor').isNumeric().withMessage("Valor inválido"),
+    body('codCategoria').isNumeric().withMessage("Código da categoria inválido"),
+    body('codEditora').isNumeric().withMessage("Código da editora inválido"),
+], async (req, res) => {
     const {nome,dataPublicacao,paginas,valor,codCategoria,codEditora} = req.body;
     const id = req.params.id;
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).send({errors: errors.array()});
+    }
     try{
         await db.updateLivro(nome,dataPublicacao,paginas,valor,codCategoria,codEditora,id);
         res.status(200).send({mensage: "Livro alterado com sucesso"});

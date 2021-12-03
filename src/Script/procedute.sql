@@ -108,7 +108,7 @@ DELIMITER ;
 
 /*update user*/
 DELIMITER $$
-	create procedure pc_updateUser(userName VARCHAR(45),email VARCHAR(100),password varchar(64),codigo int)
+	create procedure pc_updateUser(userName VARCHAR(45),nome VARCHAR(45), email VARCHAR(100),password varchar(64),codigo int)
     begin
     update tbl_user set userName  = userName, email = email, password = SHA2(password,256) where codigo_user = codigo ;
     END $$
