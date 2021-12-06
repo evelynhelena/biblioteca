@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import db from "../Service/LoginService.js";
 import {body, validationResult} from "express-validator";
+import {generateToken} from "../helpers/userFeatures.js";
 
 router.post('/',[
     body('userName').isString().withMessage("Nome de usuário inválido"),
@@ -17,7 +18,9 @@ router.post('/',[
     try{
         const userFind = await db.login(userName, password);
         if(userFind.length > 0){
-            res.status(200).send(userFind);
+            const {codigo_user, userName} = userFind[0];
+            const token = generateToken(codigo_user, userName);
+            res.status(200).send({ Message: "Login efetuado com sucesso", token })
         }else{
             res.status(401).send({message: "Usuário ou senha incorreto"});
         }

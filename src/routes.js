@@ -9,16 +9,17 @@ import user from "./Controller/UserController.js";
 import login from "./Controller/LoginController.js";
 import autorLivro from "./Controller/AutorLivroController.js";
 import emprestimo from "./Controller/EmprestimoController.js";
+import {verifyJWT} from "./middlewares/jwt.js";
 
-router.use("/client",client);
-router.use("/editora",editora);
-router.use("/autor",autor);
-router.use("/categoria",categoria);
-router.use("/livro",livro);
-router.use("/user",user);
+router.use("/client",verifyJWT,client);
+router.use("/editora",verifyJWT,editora);
+router.use("/autor",verifyJWT,autor);
+router.use("/categoria",verifyJWT,categoria);
+router.use("/livro",verifyJWT,livro);
+router.use("/user",verifyJWT,user);
 router.use("/login",login);
-router.use("/autorLivro",autorLivro);
-router.use("/emprestimo",emprestimo);
+router.use("/autorLivro",verifyJWT,autorLivro);
+router.use("/emprestimo",verifyJWT,emprestimo);
 
 
 router.use('/',(req, res) => {
