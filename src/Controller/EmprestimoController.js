@@ -38,8 +38,8 @@ router.put('/:id',[
     body('retirada').isDate().withMessage("Data de retirada inválida"),
     body('devolucao').isDate().withMessage("Data de devolução inválida"),
     body('codigoCliente').isNumeric().withMessage("Codigo do cliente inválido"),
-    body('livros').isArray().withMessage("Livros inválidos"),
-    body('livros').isLength({min: 1}).withMessage("Livros inválidos"),
+    body('lastBook').isNumeric().withMessage("Livro inválido"),
+    body('newBook').isNumeric().withMessage("Livro inválido"),
  ], async (req, res) => {
     const {retirada,devolucao,codigoCliente,lastBook,newBook} = req.body;
     const id = req.params.id;

@@ -9,6 +9,7 @@ import user from "./Controller/UserController.js";
 import login from "./Controller/LoginController.js";
 import autorLivro from "./Controller/AutorLivroController.js";
 import emprestimo from "./Controller/EmprestimoController.js";
+import log from "./Controller/LogLivro.js";
 import {verifyJWT} from "./middlewares/jwt.js";
 
 router.use("/client",verifyJWT,client);
@@ -20,6 +21,7 @@ router.use("/user",verifyJWT,user);
 router.use("/login",login);
 router.use("/autorLivro",verifyJWT,autorLivro);
 router.use("/emprestimo",verifyJWT,emprestimo);
+router.use("/log",verifyJWT,log);
 
 
 router.use('/',(req, res) => {
